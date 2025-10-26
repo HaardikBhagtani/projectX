@@ -33,12 +33,14 @@ st.markdown("Upload a **photo file** to blurr the number plate")
 
 file = st.file_uploader("📤 Upload a photo file", type=["jpeg", "jpg", "png", "JPG"], label_visibility="visible")
 
-models = ["small", "medium"]
+models = ["small", "medium", "large"]
 
 # Dropdown with default selection
 selected_model = st.selectbox("Choose a model:", models, index=0)
 if selected_model == 'small':
     model = r"model/small.pt"
+elif selected_model == 'large':
+    model = r"model/large.pt"    
 else:
     model = r"model/medium.pt"    
 
