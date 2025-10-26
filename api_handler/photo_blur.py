@@ -1,8 +1,8 @@
 from ultralytics import YOLO
 import os, cv2
 
-def blur_photo(imagePath, file_name):
-    model = YOLO(r"model/best.pt")
+def blur_photo(imagePath, file_name, modelPath):
+    model = YOLO(modelPath)
 
     results = model.predict(source=imagePath, conf=0.5, save=False, show=False)
 

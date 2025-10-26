@@ -33,6 +33,15 @@ st.markdown("Upload a **photo file** to blurr the number plate")
 
 file = st.file_uploader("📤 Upload a photo file", type=["jpeg", "jpg", "png", "JPG"], label_visibility="visible")
 
+models = ["small", "medium"]
+
+# Dropdown with default selection
+selected_model = st.selectbox("Choose a model:", models, index=0)
+if selected_model == 'small':
+    model = r"model/small.pt"
+else:
+    model = r"model/medium.pt"    
+
 if file:
     file_bytes = file.read()
     file_name = file.name
@@ -57,6 +66,6 @@ if file:
         st.subheader("🔬 Result")
         st.markdown("*This may take ~10 seconds depending on photo length.*")
         with st.spinner("Blurring Photo..."):
-            result = blur_photo(photoPath, file_name)
+            result = blur_photo(photoPath, file_name, model)
             st.image(result)
 
